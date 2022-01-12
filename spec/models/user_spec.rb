@@ -2,15 +2,6 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  # @user = User.create(
-  #       name: "Bob", 
-  #       email: 'bob@bob.com',
-  #       password: '123', 
-  #       password_confirmation: '123'
-  #     )
-  #       expect(@user).to be_falsey
-
-
   describe 'Validations' do
     
     it 'should save with all fields filled out of the form' do
@@ -129,7 +120,48 @@ RSpec.describe User, type: :model do
       expect(@user2).to be_valid
       expect(@user.errors.full_messages).to include("Password is too short (minimum is 3 characters)")
     end
-
   end
 
+  describe '.authenticate_with_credentials' do
+
+    it 'will return a user with a valid email and password' do
+      User.create(
+        first_name: 'Bob',
+        last_name: 'Smith',
+        email: 'bob@bob.com',
+        password: 'apple', 
+        password_confirmation: 'apple'
+      )
+      user = User.authenticate_with_credentials('bob@bob.com', 'apple')
+      expect(user.email).to eq('bob@bob.com')
+    end
+
+    it 'will return invalid with nill email and password' do
+      expect(User.authenticate_with_credentials(nil, nil)).to eq(nil)
+    end
+
+    it 'will return a user with a valid email and password with email as case insensitive' do
+      User.create(
+        first_name: 'Bob',
+        last_name: 'Smith',
+        email: 'bob@bob.com',
+        password: 'apple', 
+        password_confirmation: 'apple'
+      )
+      user = User.authenticate_with_credentials('BOB@BOB.com', 'apple')
+      expect(user.email).to eq('bob@bob.com')
+    end
+
+    it 'will return a user with a valid email and password with email as case insensitive with leading and trailing spaces' do
+      User.create(
+        first_name: 'Bob',
+        last_name: 'Smith',
+        email: 'bob@bob.com',
+        password: 'apple', 
+        password_confirmation: 'apple'
+      )
+      user = User.authenticate_with_credentials('   BOB@BOB.com   ', 'apple')
+      expect(user.email).to eq('bob@bob.com')
+    end
+  end
 end

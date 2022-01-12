@@ -5,11 +5,22 @@ class User < ActiveRecord::Base
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :email, presence: true, uniqueness: {case_sensitive: false}
-    validates :password, length: {minimum: 3}
-    validates :password_digest, presence: true
+    validates :password, presence: true, length: {minimum: 3}
+    validates :password_digest, presence: true, length: {minimum: 3}
 
-def name
- first_name
-end
+    def name
+    first_name
+    end
 
+
+    def self.authenticate_with_credentials(email, password)
+        if email
+            user = User.find_by_email(email.strip.downcase)
+            if user && user.authenticate(password)
+                user
+            else 
+                nil
+            end
+        end
+    end
 end
