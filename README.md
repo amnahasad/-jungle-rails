@@ -31,3 +31,13 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+
+
+## Screenshots
+
+!["Login Page"]()
+!["Registration Page"]()
+!["Signin for admin page"]()
+!["Empty cart"]()
+!["View Cart"]()
+!["Order Summary"]()
