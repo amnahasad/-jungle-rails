@@ -35,9 +35,9 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 
 ## Screenshots
 
-!["Login Page"]()
-!["Registration Page"]()
-!["Signin for admin page"]()
-!["Empty cart"]()
-!["View Cart"]()
-!["Order Summary"]()
+!["Login Page"](https://github.com/amnahasad/jungle-rails/blob/master/docs/login-page.png?raw=true)
+!["Registration Page"](https://github.com/amnahasad/jungle-rails/blob/master/docs/registration-page.png?raw=true)
+!["Signin for admin page"](https://github.com/amnahasad/jungle-rails/blob/master/docs/admin-login-page.png?raw=true)
+!["Empty cart"](https://github.com/amnahasad/jungle-rails/blob/master/docs/empty-cart.png?raw=true)
+!["View Cart"](https://github.com/amnahasad/jungle-rails/blob/master/docs/view-cart.png?raw=true)
+!["Order Summary"](https://github.com/amnahasad/jungle-rails/blob/master/docs/order-summary.png?raw=true)
