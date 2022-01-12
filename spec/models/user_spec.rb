@@ -110,6 +110,26 @@ RSpec.describe User, type: :model do
       expect(@user2.errors.full_messages).to include("Email has already been taken")
     end
 
+    it 'is not valid if the password does not meet minimum length' do
+      @user = User.new(
+        first_name: 'Bob',
+        last_name: 'Smith',
+        email: 'bob@bob.com',
+        password: 'a', 
+        password_confirmation: 'a'
+      )
+      @user2 = User.new(
+        first_name: 'Bobby',
+        last_name: 'Alex',
+        email: 'bob@bob.com',
+        password: 'apple', 
+        password_confirmation: 'apple'
+      )
+      expect(@user).to be_invalid
+      expect(@user2).to be_valid
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 3 characters)")
+    end
+
   end
 
 end
